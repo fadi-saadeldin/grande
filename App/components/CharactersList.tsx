@@ -2,75 +2,26 @@ import React from 'react';
 import { StyleSheet, Text, FlatList } from 'react-native';
 import CharacterCard from './common/CharacterCard'
 import SearchTextInput from './common/SearchTextInput';
-const CharactersList = (props: any) =>{
+const CharactersList = (props: any) => {
   return (
-    <FlatList
-    data={props.characters}
-    renderItem={({ item, separators }) => (
-      <CharacterCard character={item} onPress={() => props.onPress(item)}/>
-    )}
-    keyExtractor={item => item.id}
-/>
+    <React.Fragment>
+      <SearchTextInput value={props.filter.name} onChangeText={props.onSearch} onClearText={()=>props.onSearch('')}/>
+      <FlatList
+        data={props.characters}
+        renderItem={({ item, separators }) => (
+          <CharacterCard character={item} onPress={() => props.onShowDetails(item.id)} />
+        )}
+        keyExtractor={item => item.id}
+        refreshing={props.loading}
+        onRefresh={props.onRefetch}
+        onEndReachedThreshold={0.1}
+        onEndReached={() => {
+            props.handleLoadMore()
+        }}
+      />
+      
+    </React.Fragment>
   );
 }
 
-export default CharactersList 
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  developmentModeText: {
-    marginBottom: 20,
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
-  },
-  contentContainer: {
-    paddingTop: 30,
-  },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
-  },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    lineHeight: 24,
-    textAlign: 'center',
-  },
-  helpContainer: {
-    marginTop: 15,
-    marginHorizontal: 20,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    textAlign: 'center',
-  },
-});
+export default CharactersList;

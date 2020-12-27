@@ -2,9 +2,11 @@ import * as React from 'react';
 
 import CharacterDetials from '../components/CharacterDetials';
 
-export default function TabTwoScreen() {
+ const CharacterDetialsScreen= ()=> {
   return (
-    <CharacterDetials></CharacterDetials>
+    <CharacterDetials/>
   );
 }
+
+export default CharacterDetialsScreen;
 

@@ -1,15 +1,49 @@
-import * as React from 'react';
-import { StyleSheet } from 'react-native';
-import { useQuery, gql } from '@apollo/client';
+import React, { useState } from 'react';
+import { useQuery } from '@apollo/client';
 import { CHARACTERS } from '../graphQl'
 import CharactersListScreen from '../components/CharactersList';
 
-const CharactersList = (props: any) => {
-  const { loading, data } = useQuery(CHARACTERS);
-  if (loading) return <p>Loading...</p>;
+interface IFilter {
+  name: string,
+}
+const CharactersList = () => {
+  const [page, setPage] = useState(1);
+  const [filter, setFilter] = useState<IFilter>({ name : ''})
+  const { loading, data, fetchMore, refetch } = useQuery(CHARACTERS, {
+    variables: {
+      page: page,
+      filter: filter
+    },
+  });
 
+  const handleLoadMore = () => {
+    setPage(page + 1)
+  }
+
+  const onSearch = (name: string) => {
+    const newFilter: IFilter = { name };
+    setFilter(newFilter)
+  }
+
+  const onShowDetails = (id: Number) => {
+
+  }
+
+  const onRefetch = () => {
+    refetch()
+    setPage(1)
+  }
+  
   return (
-    <CharactersListScreen characters={data ? data.characters: []}/>
+    <CharactersListScreen
+      handleLoadMore={handleLoadMore}
+      onSearch={onSearch}
+      loading={loading}
+      onShowDetails={onShowDetails}
+      onRefetch={onRefetch}
+      characters={data ? data.characters.results : []}
+      filter={filter}
+    />
   );
 }
 
