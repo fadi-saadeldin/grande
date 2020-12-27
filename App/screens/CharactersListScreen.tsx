@@ -6,10 +6,10 @@ import CharactersListScreen from '../components/CharactersList';
 interface IFilter {
   name: string,
 }
-const CharactersList = () => {
+const CharactersList = (props: any) => {
   const [page, setPage] = useState(1);
   const [filter, setFilter] = useState<IFilter>({ name : ''})
-  const { loading, data, fetchMore, refetch } = useQuery(CHARACTERS, {
+  const { loading, data, refetch } = useQuery(CHARACTERS, {
     variables: {
       page: page,
       filter: filter
@@ -27,13 +27,14 @@ const CharactersList = () => {
 
   const onShowDetails = (id: Number) => {
 
+    props.navigation.navigate('Details', { id})
   }
 
   const onRefetch = () => {
     refetch()
     setPage(1)
   }
-  
+
   return (
     <CharactersListScreen
       handleLoadMore={handleLoadMore}

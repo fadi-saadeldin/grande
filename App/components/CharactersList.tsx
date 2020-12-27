@@ -8,8 +8,8 @@ const CharactersList = (props: any) => {
       <SearchTextInput value={props.filter.name} onChangeText={props.onSearch} onClearText={()=>props.onSearch('')}/>
       <FlatList
         data={props.characters}
-        renderItem={({ item, separators }) => (
-          <CharacterCard character={item} onPress={() => props.onShowDetails(item.id)} />
+        renderItem={({ item }) => (
+          <CharacterCard key={item.id} character={item} onPress={() => props.onShowDetails(item.id)} />
         )}
         keyExtractor={item => item.id}
         refreshing={props.loading}

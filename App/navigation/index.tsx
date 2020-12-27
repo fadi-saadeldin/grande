@@ -22,7 +22,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator initialRouteName="List">
-      <Stack.Screen name="List" component={CharacterListScreen} />
+      <Stack.Screen name="List" component={CharacterListScreen} options={{ title: 'Characters' }} />
       <Stack.Screen name="Details" component={CharacterDetailsScreen} />
     </Stack.Navigator>
   );
