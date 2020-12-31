@@ -13,6 +13,7 @@ const EpisodeCard = ({ episode }: any) => {
 const CharacterCard = (props: any) => {
   return (
     <FlatList
+      testID='flat-list'
       data={props.episodes}
       renderItem={({ item }) => (
         <EpisodeCard key={item.id} episode={item} />

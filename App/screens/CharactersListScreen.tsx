@@ -26,7 +26,6 @@ const CharactersList = (props: any) => {
   }
 
   const onShowDetails = (id: Number) => {
-
     props.navigation.navigate('Details', { id})
   }
 

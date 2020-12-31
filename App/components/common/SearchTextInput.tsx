@@ -4,9 +4,10 @@ import { Ionicons } from '@expo/vector-icons';
 
 const AutoComplete = (props: any) => {
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={props.onClearText} style={styles.closeIcon}><Ionicons name="ios-close" size={25} color="#D6D6D6" /></TouchableOpacity>
+    <View testID="container" style={styles.container}>
+      <TouchableOpacity testID="touchable-opacity" onPress={props.onClearText} style={styles.closeIcon}><Ionicons name="ios-close" size={25} color="#D6D6D6" /></TouchableOpacity>
       <TextInput
+        testID="text-input" 
         autoCompleteType={'off'}
         autoCorrect={false}
         style={styles.autocompleteStyle}
@@ -16,7 +17,7 @@ const AutoComplete = (props: any) => {
         onChangeText={props.onChangeText}
         placeholder={props.placeholder}
       />
-      <Ionicons style={styles.searchIcon} name="md-search" size={25} color="#D6D6D6" />
+      <Ionicons testID="icon"  style={styles.searchIcon} name="md-search" size={25} color="#D6D6D6" />
     </View>
   )
 }

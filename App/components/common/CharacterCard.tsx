@@ -4,10 +4,10 @@ import { StyleSheet, TouchableOpacity, View, Image, Text } from 'react-native';
 
 const CharacterCard = (props: any) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={props.onPress}>
-      <View style={styles.contentContainer}>
-        <View><Text >{props.character.name}</Text></View>
-        <View><Image style={styles.Image} source={{ uri: props.character.image }} /></View>
+    <TouchableOpacity testID="touchable-opacity" style={styles.container} onPress={props.onPress}>
+      <View testID="container" style={styles.contentContainer}>
+        <View><Text testID="name" >{props.character.name}</Text></View>
+        <View><Image testID="image" style={styles.Image} source={{ uri: props.character.image }} /></View>
       </View>
     </TouchableOpacity>
   )
