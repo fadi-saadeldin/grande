@@ -17,7 +17,7 @@ cd grande
 #### `expo start`
 
 **To open your app in the iOS Simulator if you're on a Mac and have it installed.*
-#### `ios ios`
+#### `yarn ios`
 
 **To open your app  on a connected Android device or emulator..*
-#### `ios android`
+#### `yarn android`
